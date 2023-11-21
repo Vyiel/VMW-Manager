@@ -1,8 +1,8 @@
 <?php 
 
 $sName = "localhost";
-$uName = "professor";
-$pass = "ProfVeilVM@1";
+$uName = "";
+$pass = "";
 $db_name = "vm";
 
 try {
