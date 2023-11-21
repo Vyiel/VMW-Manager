@@ -157,7 +157,7 @@
         </tbody>
       </table>
       <form action="addvm" method=GET>
-      <center> <button type="submit" class="btn btn-secondary" name="addvm" formaction="/addvm" value="add" style="text-align: center;"> Add </button> </center>
+      <center> <button type="submit" class="btn btn-secondary" name="addvm" formaction="addvm" value="add" style="text-align: center;"> Add </button> </center>
       </form>
     </div>
   </div>
