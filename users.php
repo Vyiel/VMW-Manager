@@ -138,7 +138,7 @@ if(isset($_POST['remove']))
         </tbody>
       </table>
       <form action="adduser" method=GET>
-      <center> <button type="submit" class="btn btn-secondary" name="adduser" formaction="/adduser" value="add" style="text-align: center;"> Add </button> </center>
+      <center> <button type="submit" class="btn btn-secondary" name="adduser" formaction="adduser" value="add" style="text-align: center;"> Add </button> </center>
       </form>
     </div>
   </div>
