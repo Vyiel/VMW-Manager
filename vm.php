@@ -136,7 +136,7 @@
 
     <tbody>
       <tr>
-        <form action="/action" method="POST">
+        <form action="action" method="POST">
           <td style="text-align: center;"> <?php echo($vm_name); ?></td>
           <!-- <td style="text-align: center;"> <?php echo($vm_desc); ?></td> -->
           <td style="text-align: center;"> 
