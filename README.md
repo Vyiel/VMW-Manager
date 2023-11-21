@@ -8,8 +8,8 @@ How to:
 edit db_config.php for connecting to MySQL DB:
 DB Config:
 - DB Name: vm
-- Table 1: users (full_name, email, password)
-- Table 2: vms (name, description, location, port)
+- Table 1: users (id, full_name, email, password)
+- Table 2: vms (id, name, description, location, port)
 
 edit app_config.php to give the location of your vmware installation directory and the DNS record or the public IP.
 
