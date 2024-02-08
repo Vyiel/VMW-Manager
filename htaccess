@@ -1,0 +1,83 @@
+
+AuthType Basic
+AuthName "restricted access"
+AuthUserFile C:/xampp/htdocs/vmops/security/.htpasswd
+Require valid-user
+
+ErrorDocument 404 "/vmops/404.html"
+ErrorDocument 403 "/vmops/404.html"
+ErrorDocument 500 "/vmops/404.html"
+
+
+
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+RewriteRule ^([^\.]+)$ $1.html [NC,L]
+
+# Deny access to .htaccess
+<Files .htaccess>
+Order allow,deny
+Deny from all
+</Files>
+
+<Files ".htaccess">  
+  Require all denied
+</Files>
+
+<Files "/security/.htpasswd">  
+  Require all denied
+</Files>
+
+<Files "db_conn.php">  
+  Require all denied
+</Files>
+
+# Disable directory browsing 
+Options -Indexes
+
+# Hide the contents of directories
+IndexIgnore *
+
+
+<Files index.php>
+Allow from all
+</Files>
+
+<Files login.php>
+Allow from all
+</Files>
+
+<Files users.php>
+Allow from all
+</Files>
+
+<Files adduser.php>
+Allow from all
+</Files>
+
+<Files logout.php>
+Allow from all
+</Files>
+
+<Files vm.php>
+Allow from all
+</Files>
+
+<Files addvm.php>
+Allow from all
+</Files>
+
+<Files artifacts.php>
+Allow from all
+</Files>
+
+<Files artifacts-upld.php>
+Allow from all
+</Files>
+
+<Files 404-2.html>
+Allow from all
+</Files>
