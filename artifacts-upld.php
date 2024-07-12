@@ -8,13 +8,19 @@
     }
 ?>
 
+<?php
+
+  require 'php_globals.php';
+
+?>
+
 
 
 
  <?php
     // Handle file upload
     if (isset($_POST['submit'])) {
-        $targetDir = "Z:/vmops/";
+        $targetDir = $GLOBALS['uploadLoc'];
         $targetFile = $targetDir . basename($_FILES["file"]["name"]);
         $uploadOk = 1;
 
@@ -22,7 +28,7 @@
 
         if (file_exists($targetFile)) 
         {
-            echo "Sorry, file already exists. <br>";
+            echo "Error, file already exists. <br>";
             $uploadOk = 0;
         }
 

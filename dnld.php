@@ -9,10 +9,17 @@
     }
 ?>
 
+<?php
+
+  require 'php_globals.php';
+
+?>
+
+
 
 <?php
 
-$dirPath = "Z:/vmops/";
+$dirPath = $GLOBALS['uploadLoc'];
 $files = scandir($dirPath);
 
 ?>

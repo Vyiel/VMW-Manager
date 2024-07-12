@@ -1,5 +1,5 @@
 <?php 
-	include 'db_conn.php';
+	require 'db_conn.php';
 
 	session_start();
 
@@ -8,7 +8,8 @@
 		header("Location: login");
 	}
 
-  include 'app_config.php';
+  require 'php_globals.php';
+  require 'vmrest_functions.php';
 
 
 ?>
@@ -29,11 +30,14 @@
 </head>
 <body>
 
+
   <?php include 'navbar.php'; ?>
   
   <?php
 
   function check_vm_stats($vm_loc)
+
+  // DEPRECIATED: This function was for VM State Check using VMRUN. Upgraded to VMREST API. Keep code for fall back.
   {
     $result = Null;
     $clean_list = array();
@@ -70,6 +74,24 @@
       {
         return 0;
       }
+  }
+
+  ?>
+
+  <?php
+
+  function check_vm_statsV2($location)
+  {
+    $vmwid = getVmwareID($location);
+    if ($vmwid)
+    {
+      $vmstate = getVmState($vmwid);
+      return $vmstate;
+    }
+    else
+    {
+      return "StateCheckError!";
+    }
   }
 
   ?>
@@ -111,6 +133,10 @@
 
 <?php
 
+  header("refresh: 30"); // For Refreshing the page every 30 seconds. Reason: VmStates JSON refresh. //
+
+  $vmStatesList = array();
+
   $qry = "SELECT * FROM vms";
   $stmt = $conn->prepare($qry);
   $stmt->execute();
@@ -118,18 +144,20 @@
 
   foreach ($vms as $row) 
   {
-    $vm_ID = $row['id'];
+    $vm_ID = $row['vms_id'];
     $vm_name = $row['name'];
     $vm_desc = $row['description'];
     $vm_location = $row['location'];
     // echo("VM LOC " . $vm_location . "<br>");
 
-    $status = check_vm_stats($vm_location);
-    // echo($status);
-    if($status == 1)
+    $status = check_vm_statsV2($vm_location);
+    $vm_name_with_stats = $vm_name . " (" . $status . ")";
+
+    if ($status == "Running")
     {
-      $vm_name = $vm_name . " " . "(Running)";
-      // echo($vm_name);
+      $vmw_id = getVmwareID($vm_location);
+      $arr = array("name" => $vm_name, "loc" => $vm_location, "vmID" => $vmw_id, "status" => "Running");
+      array_push($vmStatesList, $arr);
     }
 
 ?>
@@ -137,16 +165,19 @@
     <tbody>
       <tr>
         <form action="action" method="POST">
-          <td style="text-align: center;"> <?php echo($vm_name); ?></td>
+          <td style="text-align: center;"> <?php echo($vm_name_with_stats); ?></td>
           <!-- <td style="text-align: center;"> <?php echo($vm_desc); ?></td> -->
           <td style="text-align: center;"> 
-            <button type="submit" class="btn btn-secondary btn-sm" name="details" value="<?php echo($vm_ID); ?> ">Details</button>
-            <button type="submit" class="btn btn-secondary btn-sm" name="start" value="<?php echo($vm_ID); ?> ">Start</button>
-            <button type="submit" class="btn btn-secondary btn-sm" name="stop" value="<?php echo($vm_ID); ?> ">Stop</button>
-            <button type="submit" class="btn btn-secondary btn-sm" name="pause" value="<?php echo($vm_ID); ?> ">Pause</button>
-            <button type="submit" class="btn btn-secondary btn-sm" name="resume" value="<?php echo($vm_ID); ?> ">Resume</button>
-            <button type="submit" class="close" aria-label="Close" name="remove" value="<?php echo($vm_ID); ?> ">
-              <span aria-hidden="true">&times;</span>
+            <!-- <button type="submit" class="btn btn-secondary btn-sm" name="details" value="<?php echo($vm_ID); ?> ">Details</button>  KEEPING AS BACKUP -->
+            <button type="submit" class="bi bi-info-circle" style="border: none" name="details" value="<?php echo($vm_ID); ?> "></button>
+            <button type="submit" class="bi bi-tv" style="border: none" name="connect" value="<?php echo($vm_ID); ?> "></button>
+            <button type="submit" class="bi bi-play-fill" style="border: none" name="start" value="<?php echo($vm_ID); ?> "></button>
+            <button type="submit" class="bi bi-stop-circle" style="border: none" name="stop" value="<?php echo($vm_ID); ?> "></button>
+            <button type="submit" class="bi bi-pause-circle" style="border: none" name="pause" value="<?php echo($vm_ID); ?> "></button>
+            <button type="submit" class="bi bi-play-circle" style="border: none" name="resume" value="<?php echo($vm_ID); ?> "></button>
+            <button formaction="editvm.php" type="submit" style="border: none" class="bi bi-pencil-square" aria-label="Edit" name="edit" value="<?php echo($vm_ID); ?> "></button>
+            <button type="submit" class="bi bi-trash" style="border: none" aria-label="Close" name="remove" value="<?php echo($vm_ID); ?> "></button>
+              <!-- <span aria-hidden="true">&times;</span> -->
             </button>
           </td>
         </form>
@@ -164,10 +195,13 @@
 <!-- </form> -->
 </div>
 
-
-
-
 </body>
 </html>
+
+<?php
+
+file_put_contents('vmStates.json', json_encode($vmStatesList, JSON_PRETTY_PRINT));
+
+?>
 
 

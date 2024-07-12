@@ -1,6 +1,6 @@
 <?php 
 session_start();
-include 'db_conn.php';
+require 'db_conn.php';
 
 if (isset($_POST['email']) && isset($_POST['password'])) {
 	
@@ -19,7 +19,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 		if ($stmt->rowCount() === 1) {
 			$user = $stmt->fetch();
 
-			$user_id = $user['id'];
+			$user_id = $user['users_id'];
 			$user_email = $user['email'];
 			$user_password = $user['password'];
 			$user_full_name = $user['full_name'];

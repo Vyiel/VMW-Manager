@@ -21,6 +21,8 @@
     	<button type="submit" class="btn btn-secondary btn-sm" formaction="vm">VM Operations</button>
     	<button type="submit" class="btn btn-secondary btn-sm" formaction="users">Users</button>
     	<button type="submit" class="btn btn-secondary btn-sm" formaction="logout">Logout</button>
+    	<button type="submit" class="btn btn-secondary btn-sm" formaction="artifacts">Upload</button>
+    	<button type="submit" class="btn btn-secondary btn-sm" formaction="dnld">Download</button>
     </form>
 
   </div>

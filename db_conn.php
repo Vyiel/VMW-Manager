@@ -1,9 +1,11 @@
 <?php 
 
-$sName = "localhost";
-$uName = "root";
-$pass = "";
-$db_name = "vm";
+require 'php_globals.php';
+
+$sName = $GLOBALS['mysql_host'];
+$uName = $GLOBALS['mysql_user'];
+$pass = $GLOBALS['mysql_pass'];
+$db_name = $GLOBALS['mysql_DB'];
 
 try {
     $conn = new PDO("mysql:host=$sName;dbname=$db_name", 

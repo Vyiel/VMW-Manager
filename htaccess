@@ -8,9 +8,6 @@ ErrorDocument 404 "/vmops/404.html"
 ErrorDocument 403 "/vmops/404.html"
 ErrorDocument 500 "/vmops/404.html"
 
-
-
-
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^([^\.]+)$ $1.php [NC,L]
@@ -81,3 +78,53 @@ Allow from all
 <Files 404-2.html>
 Allow from all
 </Files>
+
+<Files /noVNC/vnc_lite.php>
+Allow from all
+</Files>
+
+<Files /noVNC/editVm.php>
+Allow from all
+</Files>
+
+<Files /noVNC/cloneVM.php>
+Allow from all
+</Files>
+
+<Files /noVNC/editVm.php>
+Allow from all
+</Files>
+
+<Files /noVNC/vnc.html>
+Deny from all
+</Files>
+
+<Files test.php>
+Allow from all
+</Files>
+
+<Files php_globals.php>
+Deny from all
+</Files>
+
+<Files vmrest_functions.php>
+Deny from all
+</Files>
+
+<Files init.bat>
+Deny from all
+</Files>
+
+
+<FilesMatch "\.json$">
+    Order Deny,Allow
+    Deny from all
+    Allow from 127.0.0.1 ::1
+</FilesMatch>
+
+<FilesMatch "\.py$">
+    Order Deny,Allow
+    Deny from all
+    Allow from 127.0.0.1 ::1
+</FilesMatch>
+

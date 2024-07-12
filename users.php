@@ -1,5 +1,5 @@
 <?php 
-	include 'db_conn.php';
+	require 'db_conn.php';
 
 	session_start();
 
@@ -23,9 +23,9 @@ if(isset($_POST['remove']))
     if ($stmt->rowCount() === 1)
     {
         $users = $stmt->fetch();
-        $user_ID = $users['id'];
+        $user_ID = $users['users_id'];
 
-        $stmtd = $conn->prepare("DELETE FROM users WHERE id=?;");
+        $stmtd = $conn->prepare("DELETE FROM users WHERE users_id=?");
         $stmtd->execute([$user_ID]);
         
         if($stmtd)
@@ -113,7 +113,7 @@ if(isset($_POST['remove']))
 
   foreach ($users as $row) 
   {
-    $user_ID = $row['id'];
+    $user_ID = $row['users_id'];
     $user_name = $row['full_name'];
     $email = $row['email'];
 
@@ -121,7 +121,7 @@ if(isset($_POST['remove']))
 
     <tbody>
       <tr>
-        <form action="/users" method="POST">
+        <form action="users" method="POST">
           <td style="text-align: center;"> <?php echo($user_name); ?></td>
           <td style="text-align: center;"> <?php echo($email); ?></td>
           <td style="text-align: center;"> 

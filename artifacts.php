@@ -9,6 +9,14 @@
     }
 ?>
 
+<?php
+
+  require 'php_globals.php';
+
+?>
+
+
+
 
 <!DOCTYPE html>
 
@@ -18,6 +26,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload Artifacts to RT-FS-NAS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:200,400,800' rel='stylesheet' type='text/css'><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+
+
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -75,6 +89,8 @@
     </style>
 </head>
 <body>
+
+
     <form action="artifacts-upld" method="post" enctype="multipart/form-data">
         <h1>Upload Artifacts to RT-FS-NAS</h1>
         <label for="file">Choose File:</label>

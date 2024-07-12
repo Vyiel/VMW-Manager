@@ -8,13 +8,20 @@
     }
 ?>
 
+<?php
+
+  require 'php_globals.php';
+
+?>
+
+
 
 <?php
 
 if (isset($_REQUEST['file_name']))
 {
 	$file = basename($_REQUEST['file_name']);
-	$dirPath = "Z:/vmops/";
+	$dirPath = $GLOBALS['uploadLoc'];
 	$filePath = $dirPath.$file;
 
 	if(!file_exists($filePath))
@@ -28,7 +35,7 @@ if (isset($_REQUEST['file_name']))
 	{
 	    header("Cache-Control: public");
 	    header("Content-Description: File Transfer");
-	    header("Content-Disposition: attachment; filename=$filePath");
+	    header("Content-Disposition: attachment; filename=" . basename($filePath));
 	    header("Content-Type: application/zip");
 	    header("Content-Transfer-Encoding: binary");
 

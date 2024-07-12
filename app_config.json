@@ -1,0 +1,25 @@
+{
+	"xampp_loc": "C:\\xampp\\",
+	"vmrun_location": "\"C:\\Program Files (x86)\\VMware\\VMware Workstation\\vmrun.exe\"",
+	"vmrest_location": "C:\\Program Files (x86)\\VMware\\VMware Workstation\\vmrest.exe",
+	"vmrest_port": "80",
+	"parseVmxLoc": "C:\\xampp\\htdocs\\vmops\\",
+	"host_location": "example.com",
+	"VMX_location": "D:\\",
+	"novnc_dir": "\"C:\\xampp\\htdocs\\vmops\\noVNC\"",
+	"vmrest_user": "root",
+	"vmrest_pass": "password",
+	"vmrest_baseURL": "127.0.0.1:80",
+	"mysql_host": "127.0.0.1",
+	"mysql_user": "root",
+	"mysql_pass": "password",
+	"mysql_DB": "vm",
+	"vncCommonPass": "OCYQNzwdFiE4Jj0QPBUjFComBjg0FzEfKiwfJTUWAxgqLAocFzITNQ4tBw8XMgQZDw0DBAcyHyQHHQQPByo0FAcdNBUPKgg/FxkXEgsrAyoVGzAeKysPHDUbBhgqLQoaNRMyDDoNNwgxMyA9OB0SEjkyGgk4HTQqODYVKDgdBQ8=",
+	"vncCommonPassText": "12345678",
+	"hostIP": "192.168.1.2",
+	"uploadLoc": "Z:/vmops/"
+
+
+	// What to Set and Why and How to set are explained in the README.MD
+}
+

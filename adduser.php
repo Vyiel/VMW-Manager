@@ -1,5 +1,5 @@
 <?php 
-	include 'db_conn.php';
+	require 'db_conn.php';
 
 	session_start();
 
@@ -80,7 +80,7 @@ if(isset($_POST['submit']) && $_POST['submit'] == "add")
     <p style="text-align: center;"> - </p>
     <div class="col-sm-12">
         <input type="text" class="form-control" name="name" placeholder="Enter full user name" required>
-        <input type="text" class="form-control" name="email" placeholder="Enter email address" required>
+        <input type="email" class="form-control" name="email" placeholder="Enter email address" required>
         <input type="password" class="form-control" name="password" placeholder="Password" required>
         <input type="password" class="form-control" name="c_password" placeholder="Confirm Password" required>
         <center> <button type="submit" class="btn btn-secondary" name="submit" value="add" style="text-align: center;"> Add </button> </center>
