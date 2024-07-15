@@ -26,7 +26,7 @@ function relax() {
 <?php
 
 
-if(isset($_POST['submit']) && $_POST['submit'] == "create")
+if(isset($_POST['submit']) && $_POST['submit'] == "clone")
 {
     $name = htmlspecialchars($_POST['name'], ENT_QUOTES);
     $parentID = htmlspecialchars($_POST['vmPathID'], ENT_QUOTES);
@@ -104,7 +104,7 @@ if(isset($_POST['submit']) && $_POST['submit'] == "create")
         ?>
       </select>
 
-        <center> <button type="submit" class="btn btn-secondary" name="submit" value="create" style="text-align: center;"> Create </button> </center>
+        <center> <button type="submit" class="btn btn-secondary" name="submit" value="clone" style="text-align: center;"> Clone </button> </center>
 
     </div>
   </div>
