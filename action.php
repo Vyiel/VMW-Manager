@@ -34,7 +34,7 @@ function callVmware($location, $action, $port)
 			if ($cmd == 200)
 			{
 				echo "<script>
-				alert('The VM will be accessible at " . $host_loc . ":" . $port . " in a minute! ');
+				alert('The VM will be accessible at " . $host_loc . " in a minute! ');
 				window.location = 'vm';
 				</script>";	
 			}
