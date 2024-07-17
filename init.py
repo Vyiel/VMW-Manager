@@ -36,10 +36,11 @@ def initVMRestServer():
     command = ['powershell', '-Command',
                 'Start-Process',
                 shlex.quote(vmrestLoc),
-                '-ArgumentList', f'@("-p {vmrestPort}", "-d")']
+                '-ArgumentList', f'@("-p {vmrestPort}")']
+                # '-ArgumentList', f'@("-p {vmrestPort}", "-d")'] # FOR DEBUG MODE
 
     try:
-        serverProc = subprocess.Popen(command)
+        serverProc = subprocess.Popen(command, bufsize=1)
     except Exception as e:
         serverProc = None
         cprint("Error Launching VMRest API. Error: " + str(e))
