@@ -115,6 +115,9 @@ Deny from all
 Deny from all
 </Files>
 
+<Files initout.log>
+Deny from all
+</Files>
 
 <FilesMatch "\.json$">
     Order Deny,Allow
