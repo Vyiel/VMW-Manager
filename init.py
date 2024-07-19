@@ -132,7 +132,7 @@ def TaskManager(vmStates):
             # keyargs = "--cert " + cert + " --key " + ckey + " " + cmode + " " # Use above certificate settings in case of SSL USE. Add + keyargs + wsargs bellow
 
             # procObj = subprocess.Popen("python -m websockify " + keyargs + wsargs) # FOR SSL use only
-            procObj = subprocess.Popen("python -m websockify -v " + wsargs)
+            procObj = subprocess.Popen("python -m websockify -v " + wsargs, bufsize=1)
             cprint("VmID Started at PID: " + str(procObj.pid))
             processes[vmID] = procObj
 
